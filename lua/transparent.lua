@@ -56,15 +56,12 @@ local default = {
 
 --- @param options? options
 function M.setup(options)
-	local groups = options.groups or default.groups
-	local is_toggle = options.toggle or default.toggle
+    options = options or {}
+	
+    M.is_toggle = not (options.toggle or default.toggle)
+	M.groups = options.groups or default.groups
 
-	M.is_toggle = is_toggle
-	M.groups = groups
-
-	if toggle then
-		M.toggle()
-	end
+    M.toggle()
 end
 
 function M.transpaprent()
@@ -88,11 +85,11 @@ function M.toggle()
 			"BufWinEnter",
 			"ColorScheme",
 		}, {
-			callback = transparent,
+			callback = M.transpaprent,
 		})
 	else
 		vim.api.nvim_del_autocmd(M.auto_cmd_buf)
 	end
 end
-
+M.setup()
 return M
