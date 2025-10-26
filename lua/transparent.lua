@@ -91,5 +91,5 @@ function M.toggle()
 		vim.api.nvim_del_autocmd(M.auto_cmd_buf)
 	end
 end
-M.setup()
+
 return M
