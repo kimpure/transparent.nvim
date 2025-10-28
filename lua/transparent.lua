@@ -14,7 +14,6 @@ M.groups = {}
 --- @field groups? string[]
 --- @field toggle? boolean
 
---- @type options
 local default = {
 	groups = {
 		"Normal",
@@ -50,18 +49,21 @@ local default = {
 		"NeoTreeNormal",
 		"NeotreeNormalNC",
 		"NvimTreeNormal",
+
+		"SatelliteBar",
+		"SatelliteBackground",
 	},
 	toggle = true,
 }
 
 --- @param options? options
 function M.setup(options)
-    options = options or {}
-	
-    M.is_toggle = not (options.toggle or default.toggle)
+	options = options or {}
+
+	M.is_toggle = not (options.toggle or default.toggle)
 	M.groups = options.groups or default.groups
 
-    M.toggle()
+	M.toggle()
 end
 
 function M.transpaprent()
